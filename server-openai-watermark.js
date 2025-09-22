@@ -8,12 +8,12 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-// Root test route
+// ✅ Root test route
 app.get("/", (req, res) => {
   res.json({ success: true, message: "AIQG Node server running ✅" });
 });
 
-// Image generation route
+// ✅ Image generation route
 app.post("/api/generate-image", async (req, res) => {
   try {
     const { prompt, n = 1, size = "512x512", watermarkText } = req.body;
@@ -37,14 +37,14 @@ app.post("/api/generate-image", async (req, res) => {
       return res.status(500).json(data);
     }
 
-    // return images (base64 or url)
+    // ✅ Return response
     res.json({
       success: true,
       images: data.data,
       watermark: watermarkText || null,
     });
   } catch (err) {
-    console.error(err);
+    console.error("Server Error:", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
