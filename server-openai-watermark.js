@@ -1,7 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const fetch = require("node-fetch");
-require("dotenv").config();
+import express from "express";
+import bodyParser from "body-parser";
+import fetch from "node-fetch";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,7 +22,7 @@ app.post("/api/generate-image", async (req, res) => {
       return res.status(400).json({ error: "❌ Prompt is required" });
     }
 
-    // Call OpenAI API
+    // Call OpenAI Images API
     const response = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
@@ -36,6 +38,7 @@ app.post("/api/generate-image", async (req, res) => {
       return res.status(500).json({ success: false, error: data.error });
     }
 
+    // Return images + watermark text
     res.json({
       success: true,
       images: data.data,
