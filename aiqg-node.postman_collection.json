@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "AIQG Node API",
+    "_postman_id": "12345-67890",
+    "description": "Postman collection for testing AIQG Node API on Render",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Root Test",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://aiqg-node.onrender.com/",
+          "protocol": "https",
+          "host": ["aiqg-node", "onrender", "com"],
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "Generate Image",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"सूर्यास्त के समय पहाड़ों का सुंदर दृश्य\",\n  \"n\": 1,\n  \"size\": \"512x512\",\n  \"watermarkText\": \"@MySite\"\n}"
+        },
+        "url": {
+          "raw": "https://aiqg-node.onrender.com/api/generate-image",
+          "protocol": "https",
+          "host": ["aiqg-node", "onrender", "com"],
+          "path": ["api", "generate-image"]
+        }
+      }
+    }
+  ]
+}
